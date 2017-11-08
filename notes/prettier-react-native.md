@@ -1,6 +1,7 @@
+# Setup
 ### Dependencies
 ```
-  yarn add prettier eslint eslint-plugin-react eslint-plugin-react-native eslint-plugin-prettier
+  yarn add prettier eslint eslint-plugin-react eslint-plugin-react-native eslint-plugin-prettier eslint-config-prettier babel-eslint
 ```
 
 ### package.json
@@ -41,13 +42,20 @@
   }
 }
 ```
+### .eslintignore
+```
+  cp ./.gitignore ./.eslintignore
+```
 
-### Test Run
+# Use It
+### 1. Test Run
 ```
   ./node_modules/.bin/eslint .
 ```
 
-### Edit in Place
+If the test run looks ok, then commit the changes thus far (just adding eslint/prettier) before moving onto the next step where we will actually run prettier.
+
+### 2. Edit in Place
 ```
   yarn run prettify
 ```
