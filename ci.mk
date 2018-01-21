@@ -27,5 +27,5 @@ ifeq ($(CIRCLECI_TOKEN),)
 else ifeq ($(REPO),)
 	@echo "The env variable 'REPO' is not defined."
 else
-	./env-json.sh name-value-tuple-stream ./.env | xargs -i{} ./circle.sh set env ${REPO} {}
+	./ops/env-json.sh name-value-tuple-stream ./.env | xargs -i{} ./ops/circle.sh set env ${REPO} {}
 endif

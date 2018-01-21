@@ -1,4 +1,4 @@
-include common.mk
+include ops/common.mk
 
 TMP=$(shell pwd)/tmp
 BATS_INSTALL=$(shell pwd)/tmp/bats

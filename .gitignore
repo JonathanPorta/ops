@@ -4,3 +4,4 @@ tmp
 ./after_remove.sh
 ./after_upgrade.sh
 ./before_remove.sh
+.env
