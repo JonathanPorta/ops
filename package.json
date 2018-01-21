@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "Collection of ops-related code for use across projects",
   "repository": "jonathanporta/ops",
-  "homepage":"https://github.com/JonathanPorta/ops",
+  "homepage":"https://github.com/jonathanporta/ops",
   "author": "Jonathan Porta <jonathan@jonathanPorta.com>",
   "files":[
     "package.sh",

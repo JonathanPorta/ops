@@ -1,4 +1,4 @@
-# Common Operations Code - ci pipeline, artifacts, and more! (eventually) [![CircleCI](https://circleci.com/gh/JonathanPorta/ops/tree/master.svg?style=svg)](https://circleci.com/gh/JonathanPorta/ops/tree/master)
+# Common Operations Code - ci pipeline, artifacts, and more! (eventually) [![CircleCI](https://circleci.com/gh/jonathanporta/ops/tree/master.svg?style=svg)](https://circleci.com/gh/jonathanporta/ops/tree/master)
 Collection of ops-related code for use across projects
 
 # Use in project

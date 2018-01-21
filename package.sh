@@ -55,25 +55,25 @@ check_env(){
 
 	if [ ! -f $BEFORE_REMOVE_SCRIPT_PATH ]; then
     echo_cyan "There doesn't appear to be an 'before_remove' script at "$BEFORE_REMOVE_SCRIPT_PATH". Creating a noop placeholder..."
-    cp ./templates/rpm/$BEFORE_REMOVE_SCRIPT_PATH $BEFORE_REMOVE_SCRIPT_PATH
+    cp ./ops/templates/rpm/$BEFORE_REMOVE_SCRIPT_PATH $BEFORE_REMOVE_SCRIPT_PATH
     echo_cyan "Done."
   fi
 
   if [ ! -f $AFTER_INSTALL_SCRIPT_PATH ]; then
     echo_cyan "There doesn't appear to be an 'after_install' script at '$AFTER_INSTALL_SCRIPT_PATH'. Creating a noop placeholder..."
-    cp ./templates/rpm/$AFTER_INSTALL_SCRIPT_PATH $AFTER_INSTALL_SCRIPT_PATH
+    cp ./ops/templates/rpm/$AFTER_INSTALL_SCRIPT_PATH $AFTER_INSTALL_SCRIPT_PATH
     echo_cyan "Done."
   fi
 
   if [ ! -f $AFTER_REMOVE_SCRIPT_PATH ]; then
     echo_cyan "There doesn't appear to be an 'after_remove' script at "$AFTER_REMOVE_SCRIPT_PATH". Creating a noop placeholder..."
-    cp ./templates/rpm/$AFTER_REMOVE_SCRIPT_PATH $AFTER_REMOVE_SCRIPT_PATH
+    cp ./ops/templates/rpm/$AFTER_REMOVE_SCRIPT_PATH $AFTER_REMOVE_SCRIPT_PATH
     echo_cyan "Done."
   fi
 
 	if [ ! -f $AFTER_UPGRADE_SCRIPT_PATH ]; then
     echo_cyan "There doesn't appear to be an 'after_upgrade' script at "$AFTER_UPGRADE_SCRIPT_PATH". Creating a noop placeholder..."
-    cp ./templates/rpm/$AFTER_UPGRADE_SCRIPT_PATH $AFTER_UPGRADE_SCRIPT_PATH
+    cp ./ops/templates/rpm/$AFTER_UPGRADE_SCRIPT_PATH $AFTER_UPGRADE_SCRIPT_PATH
     echo_cyan "Done."
   fi
 

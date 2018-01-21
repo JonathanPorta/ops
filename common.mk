@@ -8,7 +8,7 @@ include ops/shell.mk
 
 # Figure out which OS we are running.
 OS="linux"
-ifeq ("$(shell uname)", "Darwin"); then
+ifeq ("$(shell uname)", "Darwin")
 	OS="darwin"
 endif
 
