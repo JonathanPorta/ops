@@ -12,6 +12,9 @@ ifeq ("$(shell uname)", "Darwin")
 	OS="darwin"
 endif
 
+check_defined = $(strip $(foreach 1, $1, $(call __check_defined,$1,$(strip $(value 2)))))
+__check_defined = $(if $(value $1),, $(error Undefined $1$(if $2, ($2))$(if $(value @), required by target `$@`)))
+
 common_terraform_binary:
 	curl https://releases.hashicorp.com/terraform/0.10.7/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip -o /tmp/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip
 	unzip -o /tmp/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip -d ${TEMP_DIR}/
