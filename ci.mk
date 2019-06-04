@@ -1,5 +1,5 @@
 CI_CONFIG=.circleci/config.yml
-CI_CONFIG_TEMPLATE=./ops/templates/ci-config
+CI_CONFIG_TEMPLATE=./ops/templates/ci/config.yml
 
 ci_enable_ci:
 ifeq ($(CIRCLECI_TOKEN),)

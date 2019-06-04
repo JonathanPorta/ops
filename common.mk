@@ -4,6 +4,7 @@ TEMP_DIR=$(shell pwd)/tmp
 include ops/aws-lambda.mk
 include ops/ci.mk
 include ops/shell.mk
+include ops/github.mk
 
 
 # Figure out which OS we are running.

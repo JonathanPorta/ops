@@ -20,7 +20,7 @@ clean:
 	-rm *.rpm
 
 package: clean
-	BUILD_NUM='local' ./ops/package.sh ./package.json
+	./ops/package.sh ./package.json
 
 release: package
 	./ops/gh.sh upload ${REPO_SLUG} ${VERSION} ./*.rpm
