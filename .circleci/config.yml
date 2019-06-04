@@ -18,6 +18,7 @@ jobs:
     docker:
       - image: jonathanporta/docker-fedora-node-build-image:latest
     steps:
+      - checkout
       - run:
           name: Package and Cut Release
           command: make release
