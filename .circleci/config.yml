@@ -21,7 +21,7 @@ jobs:
       - checkout
       - run:
           name: Package and Cut Release
-          command: make release
+          command: BUILD_NUM=$CIRCLE_BUILD_NUM make release
 
 workflows:
   version: 2
