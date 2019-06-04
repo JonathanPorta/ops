@@ -1,11 +1,11 @@
 {
   "name": "ops",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Collection of ops-related code for use across projects",
   "repository": "jonathanporta/ops",
-  "homepage":"https://github.com/jonathanporta/ops",
+  "homepage": "https://github.com/jonathanporta/ops",
   "author": "Jonathan Porta <jonathan@jonathanPorta.com>",
-  "files":[
+  "files": [
     "package.sh",
     "gh.sh",
     "package.json",

@@ -94,12 +94,12 @@ require_access_token(){
 }
 
 get_latest_url(){
-	qs=""
+	as=""
 	if [ "$GITHUB_ACCESS_TOKEN" ]; then
-		qs="?access_token=${GITHUB_ACCESS_TOKEN}"
+		as="-u ${GITHUB_ACCESS_TOKEN}"
 	fi
 
-	RELEASE_ASSET_URL=$(curl "https://api.github.com/repos/${REPO_SLUG}/releases/latest${qs}" | jq -r .assets[0].browser_download_url)
+	RELEASE_ASSET_URL=$(curl ${as} "https://api.github.com/repos/${REPO_SLUG}/releases/latest" | jq -r .assets[0].browser_download_url)
 }
 
 download_asset(){
@@ -121,22 +121,23 @@ download_asset(){
 
 get_by_tag(){
 	echo_green 'Get by tag'
-	RELEASE_ID=$(curl "https://api.github.com/repos/${REPO_SLUG}/releases/tags/$RELEASE_TAG?access_token=${GITHUB_ACCESS_TOKEN}" | jq -r .id)
+	RELEASE_ID=$(curl -u ${GITHUB_ACCESS_TOKEN} "https://api.github.com/repos/${REPO_SLUG}/releases/tags/$RELEASE_TAG" | jq -r .id)
 	echo_cyan "Found Release Id of '${RELEASE_ID}' for tag '${RELEASE_TAG}'."
 }
 
 get_upload_url_by_id(){
 	echo_green 'Get by id'
-	RELEASE_UPLOAD_URL=$(curl "https://api.github.com/repos/${REPO_SLUG}/releases/$RELEASE_ID?access_token=${GITHUB_ACCESS_TOKEN}" | jq -r .upload_url)
+	RELEASE_UPLOAD_URL=$(curl -u ${GITHUB_ACCESS_TOKEN} "https://api.github.com/repos/${REPO_SLUG}/releases/$RELEASE_ID" | jq -r .upload_url)
 	echo_cyan "Found upload_url of '${RELEASE_UPLOAD_URL}' for id '${RELEASE_ID}'."
 }
 
 create(){
 	echo_green 'Create'
-	RELEASE_ID=$(curl --header 'Content-Type: application/json' \
+	RELEASE_ID=$(curl -u ${GITHUB_ACCESS_TOKEN} \
+		--header 'Content-Type: application/json' \
 		-X POST \
 		-d '{"tag_name":"'${RELEASE_TAG}'"}' \
-		"https://api.github.com/repos/${REPO_SLUG}/releases?access_token=${GITHUB_ACCESS_TOKEN}" | jq -r .id)
+		"https://api.github.com/repos/${REPO_SLUG}/releases" | jq -r .id)
 	if [ -z "${RELEASE_ID}"// ] || [ ${RELEASE_ID} == 'null' ]
 	then
 		echo_red "Looks like there was an error creating a release under the tag ${RELEASE_TAG}. Got ${RELEASE_ID}"
@@ -166,7 +167,7 @@ upload(){
 	echo_cyan "Now we have an upload_url of '${RELEASE_UPLOAD_URL}'"
 
 	echo_green 'Upload'
-	RESPONSE=$(curl \
+	RESPONSE=$(curl -u ${GITHUB_ACCESS_TOKEN} \
 		--upload-file ${RELEASE_ARTIFACT} \
 		-G \
 		--data-urlencode "name=${RELEASE_ARTIFACT_NAME}" \
@@ -174,7 +175,7 @@ upload(){
 		--header 'Connection: keep-alive' \
 		--header 'Accept: application/json' \
 		-X POST \
-		"${RELEASE_UPLOAD_URL}?access_token=${GITHUB_ACCESS_TOKEN}")
+		"${RELEASE_UPLOAD_URL}")
 
 	ARTIFACT_URL=$(echo $RESPONSE | jq -r .browser_download_url)
 
@@ -202,7 +203,7 @@ upload(){
 
 delete(){
 	echo_green 'Delete'
-	RESPONSE=$(curl -sw '%{http_code}' -X DELETE "https://api.github.com/repos/${REPO_SLUG}/releases/${RELEASE_ID}?access_token=${GITHUB_ACCESS_TOKEN}")
+	RESPONSE=$(curl -u ${GITHUB_ACCESS_TOKEN} -sw '%{http_code}' -X DELETE "https://api.github.com/repos/${REPO_SLUG}/releases/${RELEASE_ID}")
 	if [[ $RESPONSE == *"204"* ]]; then
 		echo_green "The release '${RELEASE_ID}' has been deleted."
 		exit 0
