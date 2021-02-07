@@ -1,4 +1,4 @@
-TERRAFORM_VERSION=0.10.7
+TERRAFORM_VERSION=0.14.6
 TEMP_DIR=$(shell pwd)/tmp
 
 include ops/aws-lambda.mk
@@ -17,7 +17,7 @@ check_defined = $(strip $(foreach 1, $1, $(call __check_defined,$1,$(strip $(val
 __check_defined = $(if $(value $1),, $(error Undefined $1$(if $2, ($2))$(if $(value @), required by target `$@`)))
 
 common_terraform_binary:
-	curl https://releases.hashicorp.com/terraform/0.10.7/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip -o /tmp/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip
+	curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip -o /tmp/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip
 	unzip -o /tmp/terraform_${TERRAFORM_VERSION}_${OS}_amd64.zip -d ${TEMP_DIR}/
 	chmod +x ${TEMP_DIR}/terraform
 
